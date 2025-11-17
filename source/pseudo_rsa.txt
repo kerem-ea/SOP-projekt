@@ -1,0 +1,50 @@
+// Første version uden predefineret e
+RSA_KEYGEN():
+    p = primtal_1
+    q = primtal_2
+    n = p * q
+    phi = (p - 1) * (q - 1)
+    e = et heltal hvor gcd(e, phi) = 1 && 1 < e < phi
+    d = mod_inverse(e, phi)
+    return (e, n), (d, n)
+
+RSA_ENCRYPT(M, (e, n)):
+    m = encode(M)
+    c = (m^e) mod n
+    return c
+
+RSA_DECRYPT(c, (d, n)):
+    m = (c^d) mod n
+    M = decode(m)
+    return M
+
+// Anden version med predefineret 
+RSA_KEYGEN():
+    e = 65537
+    vælg primtal p
+    vælg primtal q
+    n = p * q
+    phi = (p - 1) * (q - 1)
+
+    while gcd(e, p - 1) != 1 OR gcd(e, q - 1) != 1 OR e >= phi:
+        vælg primtal p
+        vælg primtal q
+        n = p * q
+        phi = (p - 1) * (q - 1)
+
+    d = mod_inverse(e, phi)
+
+    return (e, n), (d, n)
+
+
+RSA_ENCRYPT(M, (e, n)):
+    m = encode(M)
+    c = (m^e) mod n
+    return c
+
+
+RSA_DECRYPT(c, (d, n)):
+    m = (c^d) mod n
+    M = decode(m)
+    return M
+
