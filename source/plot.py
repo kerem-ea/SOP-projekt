@@ -14,7 +14,7 @@ def load_results(path=None):
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-def plot_encryption_times(results, out_path=None):
+def plot_encryption_times(results, out_path=None, show=True):
     # Opret struktur: key_size -> liste af (message_length, encryption_time)
     grouped = defaultdict(list)
     message_lengths = set()
@@ -57,9 +57,9 @@ def plot_encryption_times(results, out_path=None):
         plt.plot(xs, ys_dec, marker='o', linestyle='--', color=color, label=f"Key {key_size} dec")
 
     # Akse- og titelmærkninger (forøget skriftstørrelse)
-    plt.xlabel("Message length (bytes)", fontsize=14)
-    plt.ylabel("Encryption time (s, log scale)", fontsize=14)
-    plt.title("RSA encryption time vs message length", fontsize=16)
+    plt.xlabel("Besked længde (bytes)", fontsize=18)
+    plt.ylabel("Tid (s, log scale)", fontsize=18)
+    plt.title("RSA encryption/decryption tid vs message length", fontsize=16)
     # Forøget legend-tekst og titelstørrelse så farve-/linjeforklaringer er tydelige
     plt.legend(title="Key size", fontsize=12, title_fontsize=13)
 
@@ -96,8 +96,9 @@ def plot_encryption_times(results, out_path=None):
 
     plt.tight_layout()
     plt.savefig(out_path)
-    # No console output; caller (testing.py) will log plot progress to run.log
-    plt.show()
+    
+    if show:
+        plt.show()
 
 if __name__ == '__main__':
     results = load_results()
