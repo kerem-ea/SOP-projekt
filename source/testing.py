@@ -52,7 +52,7 @@ def test_rsa_keygen(key_size, message):
 
 # Test for forskellige nøglestørrelser og beskedlængder
 key_sizes = [512, 1024, 2048, 4096]  # Nøglestørrelser i bits
-message_lengths = [16, 32, 64, 128]  # Antal bytes i beskeden. Tilsvarende bits: [128, 256, 512, 1024]
+message_lengths = [32, 64, 128, 256, 512, 1024, 2048]  # Antal bytes i beskeden. Tilsvarende bits: [128, 256, 512, 1024]
 
 def main():
     results = []

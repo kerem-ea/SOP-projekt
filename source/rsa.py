@@ -1,7 +1,6 @@
 from sympy import randprime
 from math import gcd
 
-
 def RSA_KEYGEN(key_size):
     half_key_size = key_size // 2  # Halver key_size for at lave p og q store nok til at n får ønsket størrelse
     e = 65537

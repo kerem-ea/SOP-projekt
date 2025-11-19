@@ -56,11 +56,12 @@ def plot_encryption_times(results, out_path=None):
         plt.plot(xs, ys_enc, marker='o', linestyle='-', color=color, label=f"Key {key_size} enc")
         plt.plot(xs, ys_dec, marker='o', linestyle='--', color=color, label=f"Key {key_size} dec")
 
-    # Akse- og titelmærkninger
-    plt.xlabel("Message length (bytes)")
-    plt.ylabel("Encryption time (s, log scale)")
-    plt.title("RSA encryption time vs message length")
-    plt.legend(title="Key size")
+    # Akse- og titelmærkninger (forøget skriftstørrelse)
+    plt.xlabel("Message length (bytes)", fontsize=14)
+    plt.ylabel("Encryption time (s, log scale)", fontsize=14)
+    plt.title("RSA encryption time vs message length", fontsize=16)
+    # Forøget legend-tekst og titelstørrelse så farve-/linjeforklaringer er tydelige
+    plt.legend(title="Key size", fontsize=12, title_fontsize=13)
 
     # Brug logaritmisk skala for at vise forskelle tydeligere
     plt.yscale('log')
@@ -85,6 +86,9 @@ def plot_encryption_times(results, out_path=None):
             ax.set_xticks(xticks)
     except Exception:
         pass
+
+    # Forøget skriftstørrelse på tick labels så aksetekst er nemmere at læse
+    ax.tick_params(axis='both', labelsize=12)
 
     # Standard outputsti hvis ingen gives
     if out_path is None:
