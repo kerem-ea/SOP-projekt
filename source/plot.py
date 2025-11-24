@@ -36,7 +36,7 @@ def plot_encryption_times(results, out_path=None, show=True):
     if not grouped:
         raise ValueError("No valid data to plot")
 
-    plt.figure(figsize=(8, 5))
+    plt.figure(figsize=(12, 12))
 
     # Plot en solid linje for encryption_time og en stiplet linje for decryption_time
     color_cycle = plt.rcParams['axes.prop_cycle'].by_key().get('color', None)
@@ -57,11 +57,20 @@ def plot_encryption_times(results, out_path=None, show=True):
         plt.plot(xs, ys_dec, marker='o', linestyle='--', color=color, label=f"Key {key_size} dec")
 
     # Akse- og titelmærkninger (forøget skriftstørrelse)
-    plt.xlabel("Besked længde (bytes)", fontsize=18)
-    plt.ylabel("Tid (s, log scale)", fontsize=18)
-    plt.title("RSA encryption/decryption tid vs message length", fontsize=16)
+    plt.xlabel("Besked længde (bytes)", fontsize=30)
+    plt.ylabel("Tid (s, log scale)", fontsize=30)
+    plt.title("RSA encryption/decryption tid vs message length", fontsize=30)
     # Forøget legend-tekst og titelstørrelse så farve-/linjeforklaringer er tydelige
-    plt.legend(title="Key size", fontsize=12, title_fontsize=13)
+    plt.legend(
+        title="Key size",
+        fontsize=25,
+        title_fontsize=28,
+        markerscale=2.5,
+        handlelength=4,
+        borderpad=1.4,
+        labelspacing=1.0
+    )
+
 
     # Brug logaritmisk skala for at vise forskelle tydeligere
     plt.yscale('log')
@@ -88,7 +97,7 @@ def plot_encryption_times(results, out_path=None, show=True):
         pass
 
     # Forøget skriftstørrelse på tick labels så aksetekst er nemmere at læse
-    ax.tick_params(axis='both', labelsize=12)
+    ax.tick_params(axis='both', labelsize=20)
 
     # Standard outputsti hvis ingen gives
     if out_path is None:

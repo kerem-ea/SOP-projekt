@@ -3,11 +3,6 @@ from math import gcd
 
 
 def RSA_KEYGEN(key_size):
-    """
-    Generer et RSA-nøglepar af given nøglestørrelse i bits.
-
-    Returnerer en dict med nøglerne 'e', 'd' og 'n'.
-    """
     half_key_size = key_size // 2  # Halve key size so p and q produce an n of approx key_size bits
     e = 65537
 
@@ -29,17 +24,6 @@ def RSA_KEYGEN(key_size):
 
 
 def RSA_ENCRYPT(message: bytes | str, public_key):
-    """
-    Enkrypter en besked ved hjælp af den offentlige nøgle.
-
-    Bevarer chunk-længder, så de dekrypterede bytes præcist matcher den originale besked.
-
-    Parametrer:
-    - message: bytes eller str. Hvis str, kodes som utf-8.
-    - public_key: dict med 'e' og 'n'.
-
-    Returnerer: liste af dicts {'c': <int ciphertext>, 'len': <int chunk_length>}.
-    """
     e, n = public_key['e'], public_key['n']
     if isinstance(message, str):
         message_bytes = message.encode('utf-8')
@@ -62,13 +46,6 @@ def RSA_ENCRYPT(message: bytes | str, public_key):
 
 
 def RSA_DECRYPT(encrypted_chunks, private_key) -> str:
-    """
-    Dekrypter listen af chunk-objekter returneret af RSA_ENCRYPT.
-
-    Hvert item i encrypted_chunks must be a mapping with 'c' (int) and 'len' (int).
-
-    Returnerer den decoded UTF-8 string af de sammenkædede dekrypterede bytes.
-    """
     d, n = private_key['d'], private_key['n']
     decrypted = bytearray()
 
@@ -94,3 +71,5 @@ def RSA_DECRYPT(encrypted_chunks, private_key) -> str:
     except Exception:
         # Hvis dekodning fejler, returner rå bytes
         return bytes(decrypted)
+
+
